@@ -1,8 +1,8 @@
 import Expenses from "./components/Expenses/Expense.js";
 import ExpenseForm from "./components/NewExpense/NewExpense.js";
-import React from "react";
+import React, { useState } from "react";
 const App = () => {
-  const expenses = [
+  const DUMMY_EXPENSES = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -29,9 +29,16 @@ const App = () => {
     },
   ];
 
-  //get data from NewExpense.js use onAddExpense={addExpenseHandler}
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
   const addExpenseHandler = (expense) => {
-    console.log("Got it");
+    //get data from NewExpense.js use onAddExpense={addExpenseHandler}
+
+    console.log(expense);
+    setExpenses((preExpenses) => {
+      //preExpenses equal expenses
+      return [expense, ...preExpenses];
+    });
   };
 
   return (
